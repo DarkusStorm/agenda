@@ -1,11 +1,13 @@
 {% extends "base.html" %}
 
 {% block content %}
+    <br>
     <form method="POST">
         <input type="text" name="titulo-tarefa" id="titulo-tarefa" placeholder="Título da Tarefa" required>
         <input type="date" name="data-conclusao" id="data-conclusao">
         <button type="submit">Adicionar Tarefa</button>
     </form>
+    <br>
     <p>{{ tarefa.titulo_tarefa }} - {{tarefa.data_conclusao }}</p>
 {% endblock %}
 

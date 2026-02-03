@@ -4,10 +4,20 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{{ titulo }}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='reset.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
-    <h1>{{ titulo }}</h1>
+    <header><h2>Sumário</h2>
+        <nav>
+            <ul>
+                <li><a href="/">Início</a></li>
+                <li><a href="ola">Saudação</a></li>
+                <li><a href="agenda">Agenda</a></li>
+            </ul>
+        </nav>
+    </header>
+    <h1 id="titulo_pagina">{{ titulo }}</h1>
     {% block content %}{% endblock %} <!-- Similar a divisórias (div) -->
 </body>
 </html>
