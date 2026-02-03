@@ -31,6 +31,9 @@ p {
     text-align: center;
 }
 
+#tarefas {
+    text-align: center;
+}
 body h1{
     background-color: var(--cor-primaria);
     color: var(--cor-primaria-titulo);
@@ -107,8 +110,12 @@ textarea {
 button[type="submit"] {
     background-color: var(--cor-bordas);
     color: var(--cor-secundaria-texto);
+    border-radius: 0.3em;
 }
 
+button:hover{
+    background-color: #d1d1d1;
+}
 
 #titulo_pagina {
     font: bold;
