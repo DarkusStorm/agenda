@@ -6,27 +6,27 @@
 
         <div class="mb-3">
             <label for="titulo-tarefa" class="form-label">Título da Tarefa:</label>
-            <input type="text" class="form-control" name="titulo-tarefa" id="titulo-tarefa" aria-describedby="ajudaNomeTarefa" required>
+            <input type="text" class="form-control" name="titulo-tarefa" id="titulo-tarefa" aria-describedby="ajudaNomeTarefa" value="{{ tarefa_selecionada.titulo_tarefa if tarefa_selecionada else '' }}" required>
             <div id="ajudaNomeTarefa" class="form-text">Use um nome que seja descritivo para a tarefa.</div>
         </div>
 
         <div class="mb-3">
             <label for="data-conclusao" class="form-label">Data de Conclusão da Tarefa:</label>
-            <input type="date" class="form-control" name="data-conclusao" id="data-conclusao">
+            <input type="date" class="form-control" name="data-conclusao" id="data-conclusao" value="{{ tarefa_selecionada.data_conclusao if tarefa_selecionada else ''}}">
         </div>
         
-        <button type="submit" class="btn btn-primary">Adicionar Tarefa</button>
+        <button type="submit" class="btn btn-primary">Salvar Tarefa</button>
     </form>
     <h2>Lista de Tarefas</h2>
 
     {% if tarefas %}
         
-        <ul id="tarefas">
-            {% for tarefa in tarefas %}
-                <li>{{ tarefa.titulo_tarefa }} - {{ tarefa.data_conclusao }} <a href="{{ url_for('delete', idTarefa=tarefa.id_tarefa) }}">Apagar</a></li>
-            {% endfor %}
-        </ul>
-    
+        {% for tarefa in tarefas %}
+            <ul id="tarefas">
+                    <li><a href="{{url_for('update', idTarefa=tarefa.id_tarefa)}}">📝 Editar</a> — {{ tarefa.titulo_tarefa }} - {{ tarefa.data_conclusao }} — <a href="{{ url_for('delete', idTarefa=tarefa.id_tarefa) }}">Apagar 🗑️</a></li>
+            </ul>
+        {% endfor %}
+        
     {% else %}
 
         <p>Nenhuma tarefa cadastrada.</p>
