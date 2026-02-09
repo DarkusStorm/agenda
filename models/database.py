@@ -1,4 +1,7 @@
 from sqlite3 import Connection, connect, Cursor
+from types import TracebackType
+from typing import Optional, Self, Any, Type
+import traceback
 
 class Database:
     
@@ -14,7 +17,7 @@ class Database:
         self.connection.commit()
         return self.cursor
     
-    def buscar_tudo(self, query: str, params: tuple = ()):
+    def buscar_tudo(self, query: str, params: tuple = ()) -> list[Any]:
         self.cursor.execute(query, params)
         return self.cursor.fetchall()
     
@@ -24,13 +27,18 @@ class Database:
     # Métodos para o gerenciamento de conteto:
 
     # Método de entrada no contexto:
-    def __enter__(self):
-        print('Entrando no contexto...')
+    def __enter__(self) -> Self:
         return self
     
     # Método de saída do contexto:
-    def __exit__(self, exc_type, exc_value, traceback):
-        print('Saindo do contexto...')
+    def __exit__(self, exc_type: Optional[Type[BaseException]], exc_value: Optional[BaseException], tb: Optional[TracebackType]) -> None:
+
+        if exc_type is not None:
+            print('Exceção capturada no contexto:')
+            print(f'Tipo: {exc_type.__name__}')
+            print(f'Mensagem: {exc_value}')
+            print('Traceback completo:')
+            traceback.print_tb(tb)
         self.close()
 
 # # Área de Testes
